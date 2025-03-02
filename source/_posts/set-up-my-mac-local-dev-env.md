@@ -27,7 +27,7 @@ https://support.apple.com/zh-cn/102342
 
 7. JDK 8
 
-8. Oh-My-Zsh with Spaceship themeOh-My-Zsh with Spaceship theme
+8. Oh-My-Zsh with Spaceship theme
 
 9. Set up other tools
   - [配置 OpenFortiVPN](../set-up-openfortivpn.md)
