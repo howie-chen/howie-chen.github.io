@@ -30,9 +30,9 @@ https://support.apple.com/zh-cn/102342
 8. Oh-My-Zsh with Spaceship theme
 
 9. Set up other tools
-  - [配置 OpenFortiVPN](../set-up-openfortivpn.md)
-  - [配置 Oh My Zsh 和 Spaceship theme](../set-up-oh-my-zsh-and-spaceship-theme.md)
-  - [配置 SSH 会话时长](../keep-alive-for-ssh-sessions.md)
+  - [配置 OpenFortiVPN](../set-up-openfortivpn)
+  - [配置 Oh My Zsh 和 Spaceship theme](../set-up-oh-my-zsh-and-spaceship-theme)
+  - [配置 SSH 会话时长](../keep-alive-for-ssh-sessions)
 
 10. 安装命令行小工具
   ```
