@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="重新安装 macOShttps:&#x2F;&#x2F;support.apple.com&#x2F;zh-cn&#x2F;102342 初始化开发环境 配置好网络代理。  需要时，在终端使用代理：   1export http_proxy&#x3D;&quot;http:&#x2F;&#x2F;localhost:6152&quot; &amp;&amp; export https_proxy&#x3D;&quot;http:&#x2F;&#x2F;localhost:6152&quot;">
+    <meta name="description" content="重新安装 macOShttps:&#x2F;&#x2F;support.apple.com&#x2F;zh-cn&#x2F;102342 初始化开发环境 配置好网络代理。  需要时，在终端使用代理：     1export http_proxy&#x3D;&quot;http:&#x2F;&#x2F;localhost:6152&quot; &amp;&amp; export https_proxy&#x3D;&quot;http:&#x2F;&#x2F;localhost:6152&quot;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建 Mac 本地开发环境">
 <meta property="og:url" content="http://example.com/2025/03/02/set-up-my-mac-local-dev-env/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="重新安装 macOShttps:&#x2F;&#x2F;support.apple.com&#x2F;zh-cn&#x2F;102342 初始化开发环境 配置好网络代理。  需要时，在终端使用代理：   1export http_proxy&#x3D;&quot;http:&#x2F;&#x2F;localhost:6152&quot; &amp;&amp; export https_proxy&#x3D;&quot;http:&#x2F;&#x2F;localhost:6152&quot;">
+<meta property="og:description" content="重新安装 macOShttps:&#x2F;&#x2F;support.apple.com&#x2F;zh-cn&#x2F;102342 初始化开发环境 配置好网络代理。  需要时，在终端使用代理：     1export http_proxy&#x3D;&quot;http:&#x2F;&#x2F;localhost:6152&quot; &amp;&amp; export https_proxy&#x3D;&quot;http:&#x2F;&#x2F;localhost:6152&quot;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-02T00:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-02T03:09:49.901Z">
+<meta property="article:modified_time" content="2025-03-03T01:58:51.131Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
@@ -173,9 +173,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2025-03-02 00:00:00 / Modified: 03:09:49" itemprop="dateCreated datePublished" datetime="2025-03-02T00:00:00+00:00">2025-03-02</time>
+      <time title="Created: 2025-03-02 00:00:00" itemprop="dateCreated datePublished" datetime="2025-03-02T00:00:00+00:00">2025-03-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-03-03 01:58:51" itemprop="dateModified" datetime="2025-03-03T01:58:51+00:00">2025-03-03</time>
     </span>
 
   
@@ -193,8 +199,11 @@
 <li><p>配置好网络代理。</p>
 </li>
 <li><p>需要时，在终端使用代理：</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export http_proxy=&quot;http://localhost:6152&quot; &amp;&amp; export https_proxy=&quot;http://localhost:6152&quot;</span><br></pre></td></tr></table></figure>
 </li>
+</ol>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export http_proxy=&quot;http://localhost:6152&quot; &amp;&amp; export https_proxy=&quot;http://localhost:6152&quot;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
 <li><p>Homebrew</p>
 </li>
 <li><p>nvm</p>
@@ -221,8 +230,10 @@
 <li><a href="../keep-alive-for-ssh-sessions">配置 SSH 会话时长</a></li>
 </ul>
 <ol start="10">
-<li>安装命令行小工具  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install bat exa</span><br></pre></td></tr></table></figure></li>
+<li>安装命令行小工具</li>
 </ol>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install bat exa</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
