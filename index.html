@@ -111,7 +111,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -129,6 +129,90 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/04/schedule-cron-job-with-github-actions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/04/schedule-cron-job-with-github-actions/" class="post-title-link" itemprop="url">使用 GitHub Actions 调度定时任务</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-03-04 00:00:00 / Modified: 13:31:09" itemprop="dateCreated datePublished" datetime="2025-03-04T00:00:00+00:00">2025-03-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol>
+<li>在项目根目录创建 <code>.github/workflows</code> 目录。</li>
+<li>在 <code>workflows</code> 目录下创建 <code>schedule-cron-job.yml</code> 文件。</li>
+<li>在 <code>schedule-cron-job.yml</code> 文件中添加以下内容：</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">&#x27;Schedule Cron Job&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">schedule:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">cron:</span> <span class="string">&#x27;30 1 * * 1-5&#x27;</span>  <span class="comment"># UTC 时间周一到周五 1:30 AM</span></span><br><span class="line">  <span class="attr">workflow_dispatch:</span>  <span class="comment"># 支持手动触发</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">send-notification:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    </span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Send</span> <span class="string">GET</span> <span class="string">request</span> <span class="string">to</span> <span class="string">Bark</span> <span class="string">API</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">curl</span> <span class="string">-X</span> <span class="string">GET</span> <span class="string">&quot;https://api.day.app/your-token/title/content&quot;</span> </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -174,7 +258,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-03 02:00:38" itemprop="dateModified" datetime="2025-03-03T02:00:38+00:00">2025-03-03</time>
+      <time title="Modified: 2025-03-04 13:31:09" itemprop="dateModified" datetime="2025-03-04T13:31:09+00:00">2025-03-04</time>
     </span>
 
   
@@ -254,7 +338,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-03 02:00:38" itemprop="dateModified" datetime="2025-03-03T02:00:38+00:00">2025-03-03</time>
+      <time title="Modified: 2025-03-04 13:31:09" itemprop="dateModified" datetime="2025-03-04T13:31:09+00:00">2025-03-04</time>
     </span>
 
   
@@ -334,7 +418,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-03 02:00:38" itemprop="dateModified" datetime="2025-03-03T02:00:38+00:00">2025-03-03</time>
+      <time title="Modified: 2025-03-04 13:31:09" itemprop="dateModified" datetime="2025-03-04T13:31:09+00:00">2025-03-04</time>
     </span>
 
   
@@ -449,7 +533,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-03 02:00:38" itemprop="dateModified" datetime="2025-03-03T02:00:38+00:00">2025-03-03</time>
+      <time title="Modified: 2025-03-04 13:31:09" itemprop="dateModified" datetime="2025-03-04T13:31:09+00:00">2025-03-04</time>
     </span>
 
   
@@ -565,7 +649,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-03 02:00:38" itemprop="dateModified" datetime="2025-03-03T02:00:38+00:00">2025-03-03</time>
+      <time title="Modified: 2025-03-04 13:31:09" itemprop="dateModified" datetime="2025-03-04T13:31:09+00:00">2025-03-04</time>
     </span>
 
   
@@ -679,7 +763,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-03 02:00:38" itemprop="dateModified" datetime="2025-03-03T02:00:38+00:00">2025-03-03</time>
+      <time title="Modified: 2025-03-04 13:31:09" itemprop="dateModified" datetime="2025-03-04T13:31:09+00:00">2025-03-04</time>
     </span>
 
   
