@@ -111,7 +111,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -120,7 +120,7 @@
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -137,6 +137,87 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/readwise-reader-summarize-prompt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/readwise-reader-summarize-prompt/" class="post-title-link" itemprop="url">我的 Readwise Reader 文章摘要提示词</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-03-10 12:00:00 / Modified: 04:11:23" itemprop="dateCreated datePublished" datetime="2025-03-10T12:00:00+00:00">2025-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BF%A1%E6%81%AF%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">信息输入系统</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;#- 简体中文摘要 -#&#125;</span><br><span class="line"></span><br><span class="line">&#123;#- 下面的 Prompt 会将文档缩减成一个 300 字内的摘要，并根据你的 highlight 进行重点摘要。-#&#125;</span><br><span class="line"></span><br><span class="line">请使用 300 字以内，以简体中文总结以下文本：</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">标题：&#123;&#123; document.title &#125;&#125;</span><br><span class="line">作者：&#123;&#123; document.author &#125;&#125; </span><br><span class="line">来源：&#123;&#123; document.domain &#125;&#125;</span><br><span class="line"></span><br><span class="line">另外，在阅读此文章时，我对以下部分进行了高亮，认为这些是文章的重点，给你学习参考：</span><br><span class="line"></span><br><span class="line">&#123;% for highlight in document.highlights %&#125;</span><br><span class="line">- &#123;&#123; highlight.content &#125;&#125;</span><br><span class="line">&#123;% endfor %&#125;</span><br><span class="line"></span><br><span class="line">&#123;#- 下面的 if-else 逻辑检查文档的长度。如果文档较长，它将使用关键句子以避免超出 GPT 提示窗口的限制。我们强烈建议除非您知道自己在做什么，否则不要更改此设置。-#&#125;</span><br><span class="line"></span><br><span class="line">&#123;% if (document.content | count_tokens) &gt; 2000 %&#125;</span><br><span class="line">&#123;&#123; document.content | central_sentences | join(&#x27;\n\n&#x27;) &#125;&#125;</span><br><span class="line">&#123;% else %&#125;</span><br><span class="line">&#123;&#123; document.content &#125;&#125;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">重要提示：请不要超过 300 字。每句话应该简洁易读；关于中文的排版原则：在中文和英文或数字之间，要有一个半角空白，例如：Apple 手机；3 个 AI 工具。</span><br></pre></td></tr></table></figure>
+
+<p><img src="/./images/hunt-good-weekly.jpeg"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -182,7 +263,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-10 03:58:49" itemprop="dateModified" datetime="2025-03-10T03:58:49+00:00">2025-03-10</time>
+      <time title="Modified: 2025-03-10 04:11:23" itemprop="dateModified" datetime="2025-03-10T04:11:23+00:00">2025-03-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -271,7 +352,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-10 03:58:49" itemprop="dateModified" datetime="2025-03-10T03:58:49+00:00">2025-03-10</time>
+      <time title="Modified: 2025-03-10 04:11:23" itemprop="dateModified" datetime="2025-03-10T04:11:23+00:00">2025-03-10</time>
     </span>
 
   
@@ -361,7 +442,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-10 03:58:49" itemprop="dateModified" datetime="2025-03-10T03:58:49+00:00">2025-03-10</time>
+      <time title="Modified: 2025-03-10 04:11:23" itemprop="dateModified" datetime="2025-03-10T04:11:23+00:00">2025-03-10</time>
     </span>
 
   
@@ -437,7 +518,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-10 03:58:49" itemprop="dateModified" datetime="2025-03-10T03:58:49+00:00">2025-03-10</time>
+      <time title="Modified: 2025-03-10 04:11:23" itemprop="dateModified" datetime="2025-03-10T04:11:23+00:00">2025-03-10</time>
     </span>
 
   
@@ -517,7 +598,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-10 03:58:49" itemprop="dateModified" datetime="2025-03-10T03:58:49+00:00">2025-03-10</time>
+      <time title="Modified: 2025-03-10 04:11:23" itemprop="dateModified" datetime="2025-03-10T04:11:23+00:00">2025-03-10</time>
     </span>
 
   
@@ -597,7 +678,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-10 03:58:49" itemprop="dateModified" datetime="2025-03-10T03:58:49+00:00">2025-03-10</time>
+      <time title="Modified: 2025-03-10 04:11:23" itemprop="dateModified" datetime="2025-03-10T04:11:23+00:00">2025-03-10</time>
     </span>
 
   
@@ -712,7 +793,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-10 03:58:49" itemprop="dateModified" datetime="2025-03-10T03:58:49+00:00">2025-03-10</time>
+      <time title="Modified: 2025-03-10 04:11:23" itemprop="dateModified" datetime="2025-03-10T04:11:23+00:00">2025-03-10</time>
     </span>
 
   
@@ -828,7 +909,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-10 03:58:49" itemprop="dateModified" datetime="2025-03-10T03:58:49+00:00">2025-03-10</time>
+      <time title="Modified: 2025-03-10 04:11:23" itemprop="dateModified" datetime="2025-03-10T04:11:23+00:00">2025-03-10</time>
     </span>
 
   
@@ -942,7 +1023,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-10 03:58:49" itemprop="dateModified" datetime="2025-03-10T03:58:49+00:00">2025-03-10</time>
+      <time title="Modified: 2025-03-10 04:11:23" itemprop="dateModified" datetime="2025-03-10T04:11:23+00:00">2025-03-10</time>
     </span>
 
   
