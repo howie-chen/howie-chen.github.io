@@ -41,4 +41,4 @@ categories:
 重要提示：请不要超过 300 字。每句话应该简洁易读；关于中文的排版原则：在中文和英文或数字之间，要有一个半角空白，例如：Apple 手机；3 个 AI 工具。
 ```
 
-![](./images/hunt-good-weekly.jpeg)
+![](/images/hunt-good-weekly.jpeg)
