@@ -44,7 +44,7 @@ categories:
 | 通往AGI之路 | 微信公众号 | [RSS URL](https://wechat2rss.howiechen.pro/feed/3933490096.xml) |
 | Founder Park | 微信公众号 | [RSS URL](https://wewerss.bestblogs.dev/feeds/MP_WXS_3895742803.atom) |
 | 海外独角兽 | 微信公众号 | [RSS URL](https://wewerss.bestblogs.dev/feeds/MP_WXS_3869640945.atom) |
-| Dify | 微信公众号 | [RSS URL](https://wewerss.bestblogs.dev/feeds/MP_WXS_3890929674.atom) |
+| Dify | 微信公众号 | [RSS URL](https://wechat2rss.howiechen.pro/feed/3890929674.xml) |
 | Latent Space | Substack | [RSS URL](https://api.substack.com/feed/podcast/1084089.rss) |
 | 机器之心 | 微信公众号 | [RSS URL](https://wechat2rss.xlab.app/feed/51e92aad2728acdd1fda7314be32b16639353001.xml) |
 | LlamaIndex | Blog | [RSS URL](https://www.llamaindex.ai/blog/feed) |
