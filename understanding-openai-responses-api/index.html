@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"howiechen.pro","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="OpenAI 最近推出了 Responses API，用于取代原有的 Chat Completions API，在其基础上封装了更多功能、简化了开发过程。这份笔记主要涵盖了 Responses API 的主要优势。 1. 省钱聊天对话中，无需每个请求携带历史消息，很大程度减少了 token 的消耗，越多轮对话效果越明显，因为 Responses API 是有状态的。  2. 内置工具记得原先需要自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解 OpenAI - Responses API">
+<meta property="og:url" content="https://howiechen.pro/understanding-openai-responses-api/index.html">
+<meta property="og:site_name" content="Howie Chen">
+<meta property="og:description" content="OpenAI 最近推出了 Responses API，用于取代原有的 Chat Completions API，在其基础上封装了更多功能、简化了开发过程。这份笔记主要涵盖了 Responses API 的主要优势。 1. 省钱聊天对话中，无需每个请求携带历史消息，很大程度减少了 token 的消耗，越多轮对话效果越明显，因为 Responses API 是有状态的。  2. 内置工具记得原先需要自">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://howiechen.pro/images/responses-api-comparison-with-chat-completions-api.png">
+<meta property="og:image" content="https://howiechen.pro/images/openai-responses-api-built-in-web-search-logs.png">
+<meta property="og:image" content="https://howiechen.pro/images/web_search_tool_citation.png">
+<meta property="article:published_time" content="2025-03-23T10:24:25.000Z">
+<meta property="article:modified_time" content="2025-03-23T12:30:34.673Z">
+<meta property="article:author" content="Howie Chen">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="OpenAI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://howiechen.pro/images/responses-api-comparison-with-chat-completions-api.png">
+
+
+<link rel="canonical" href="https://howiechen.pro/understanding-openai-responses-api/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://howiechen.pro/understanding-openai-responses-api/","path":"understanding-openai-responses-api/","title":"理解 OpenAI - Responses API"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>理解 OpenAI - Responses API | Howie Chen</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Howie Chen</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Loudly thinking with clarity.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%9C%81%E9%92%B1"><span class="nav-number">1.</span> <span class="nav-text">1. 省钱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%86%85%E7%BD%AE%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">2. 内置工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Howie Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://howiechen.pro/understanding-openai-responses-api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Howie Chen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Howie Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="理解 OpenAI - Responses API | Howie Chen">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          理解 OpenAI - Responses API
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-23 18:24:25 / 修改时间：20:30:34" itemprop="dateCreated datePublished" datetime="2025-03-23T18:24:25+08:00">2025-03-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI-%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">AI 应用开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>OpenAI 最近推出了 Responses API，用于取代原有的 Chat Completions API，在其基础上封装了更多功能、简化了开发过程。这份笔记主要涵盖了 Responses API 的主要优势。</p>
+<h2 id="1-省钱"><a href="#1-省钱" class="headerlink" title="1. 省钱"></a>1. 省钱</h2><p>聊天对话中，无需每个请求携带历史消息，很大程度减少了 token 的消耗，越多轮对话效果越明显，因为 Responses API 是有状态的。</p>
+<p><img src="/images/responses-api-comparison-with-chat-completions-api.png"></p>
+<h2 id="2-内置工具"><a href="#2-内置工具" class="headerlink" title="2. 内置工具"></a>2. 内置工具</h2><p>记得原先需要自己写代码通过 function calling 调用第三方 API 获取搜索结果，再回传给 LLM 生成最终结果，现在 web_search 直接内置了，请求当中包含 <code>tools: [ &#123; type: &quot;web_search_preview&quot; &#125; ]</code> 就完事了。</p>
+<p>举个例子，通过以下几行代码，你就可以问最新股价了。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">OpenAI</span> <span class="keyword">from</span> <span class="string">&quot;openai&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> <span class="title class_">OpenAI</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> response = <span class="keyword">await</span> client.<span class="property">responses</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">    <span class="attr">model</span>: <span class="string">&quot;gpt-4o&quot;</span>,</span><br><span class="line">    <span class="attr">tools</span>: [ &#123; <span class="attr">type</span>: <span class="string">&quot;web_search_preview&quot;</span> &#125; ],</span><br><span class="line">    <span class="attr">input</span>: <span class="string">&quot;What is the stock price of RingCentral, Inc. in March 23, 2025?&quot;</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(response.<span class="property">output_text</span>);</span><br></pre></td></tr></table></figure>
+
+<p>通过 Logs 你可以看到 web_search tool 被使用：<br><img src="/images/openai-responses-api-built-in-web-search-logs.png"></p>
+<p>在 API 返回体中，你可以拿到哪个网页被用于生成结果 <sup><a target="_blank" rel="noopener" href="https://platform.openai.com/docs/guides/tools-web-search#output-and-citations">1</a></sup>:<br><img src="/images/web_search_tool_citation.png"></p>
+<p>除了 web_search，内置的工具还有 file_search 和 computer_use，预计 code_interpreter 也将很快得到支持。</p>
+<p>相信未来会有越来越多应用层的功能被内置到大模型的 API 当中，AI 应用的开发将会变得更简单。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.perplexity.ai/search/in-this-thread-i-m-going-to-le-h2eumQOAR5WAovEotFHCZw">This Perplexity thread</a></li>
+<li><a target="_blank" rel="noopener" href="https://platform.openai.com/docs/guides/responses-vs-chat-completions">Responses vs. Chat Completions</a></li>
+<li><a target="_blank" rel="noopener" href="https://platform.openai.com/docs/guides/tools?api-mode=responses">Built-in tools</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/OpenAI/" rel="tag"># OpenAI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/my-information-input-system/" rel="prev" title="我的结构化信息输入体系">
+                  <i class="fa fa-angle-left"></i> 我的结构化信息输入体系
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Howie Chen</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
