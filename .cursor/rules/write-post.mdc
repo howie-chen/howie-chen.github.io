@@ -1,0 +1,92 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+Rule Name: Write Blog Post
+Description: This rule provides guidelines for AI to create or update blog posts in the hexo blog.
+
+1. File Location and Naming:
+   - All posts should be created in the `source/_posts/` directory
+   - File names should be:
+     - All lowercase
+     - Words separated by hyphens
+     - Meaningful and descriptive in English
+     - End with `.md` extension
+     - Example: `my-first-blog-post.md`
+
+2. Front Matter Structure:
+   ```yaml
+   ---
+   title: Post Title
+   date: YYYY-MM-DD HH:mm:ss
+   tags:
+     - tag1
+     - tag2
+   categories:
+     - category1
+     - subcategory
+   ---
+   ```
+
+3. Title Guidelines:
+   - Should be descriptive and meaningful
+   - Can be in English or Chinese depending on the content
+   - Use proper capitalization if in English
+
+4. Date Handling:
+   - Use system's current date and time
+   - Format: YYYY-MM-DD HH:mm:ss
+   - Time zone should match system's timezone
+   - Command to get current time: `date "+%Y-%m-%d %H:%M:%S"`
+   - Always use the terminal command to ensure accurate system time
+
+5. Tags Guidelines:
+   - Use existing tags when applicable
+   - Common tags observed in the repository:
+     - AI
+     - RSS
+     - Dev
+     - Mac
+     - Tools
+     - System
+   - New tags should be relevant and consistent with existing taxonomy
+   - Use lowercase for English tags
+   - Multiple tags are allowed
+
+6. Categories Guidelines:
+   - Use existing categories when applicable
+   - Common categories observed:
+     - 信息输入系统 (Information Input System)
+     - Development
+     - Tools
+   - Categories can have hierarchy (parent/child relationship)
+   - Use proper capitalization for English categories
+   - Chinese categories are allowed
+
+7. Content Structure:
+   - Use Markdown formatting
+   - Include appropriate headings (##, ###)
+   - Use code blocks with language specification when including code
+   - Include links to references when applicable
+   - Use proper spacing between sections
+
+8. Special Considerations:
+   - Ensure all links are valid
+   - Include appropriate code formatting for technical content
+   - Add relevant images in the correct directory if needed
+   - Maintain consistent style with existing posts
+
+9. Content Creation:
+   - For new posts, leave the content empty after the front matter
+   - Content writing is the responsibility of the human author
+   - AI should only create the file structure and front matter
+
+When generating a new post or updating an existing one, the AI should:
+1. First scan existing posts to understand the context and taxonomy
+2. Generate an appropriate English filename
+3. Create proper front matter with current datetime
+4. Assign relevant tags and categories based on content and existing taxonomy
+5. For new posts, create only the front matter without any content
+6. For existing posts, preserve the existing content unless explicitly instructed otherwise 
